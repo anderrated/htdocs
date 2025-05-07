@@ -2,7 +2,7 @@
 include 'DBConnector.php';
 
 $emp_id = $_POST['EmpID'];
-$sql_emp_data = "SELECT * FROM employee WHERE EmpID = $emp_id";
+$sql_emp_data = "SELECT * FROM employee JOIN work ON employee.EmpID = work.EmpID JOIN department ON work.DeptID = department.DeptID WHERE employee.EmpID = $emp_id";
 $result = $conn->query($sql_emp_data);
 
 if ($result->num_rows == 1) {
@@ -24,17 +24,10 @@ if ($result->num_rows == 1) {
         }
     }
 
-    echo "<form action='editEmployee.php' method='post'>".
-            "<input type='hidden' name='EmpID' value='".$emp_result['EmpID']."'><br>".
-            "Name: <input type='text' name='EmpName' value='".$emp_result['EmpName']."'><br>".
-            "Age: <input type='number' name='Age' value='".$emp_result['Age']."'><br>".
-            "Salary: <input type='number' step='.01' name='Salary' value='".$emp_result['Salary']."'><br>".
-            "Hire Date: <input type='date' name='HireDate' value='".$emp_result['HireDate']."'><br>".
-            "<button type='submit'>Update Employee</button>".
-        "</form>";
+    include 'employees.php';
+
 } else {
     echo "Employee not found.";
 }
 
-$conn->close();
 ?>

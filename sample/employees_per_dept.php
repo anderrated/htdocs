@@ -39,17 +39,18 @@ if ($dept_result->num_rows > 0) {
                 else {
                     echo "<td align='center'>Employee</td>";
                 }
-                echo "<td align='center'>".
-                        "<form action='deleteEmployee.php' method='post'>".
-                            "<input type='text' style='display:none;' name='EmpID' value='".$emp_row["EmpID"]."'>".
-                            "<button type='submit'>Delete</button>".
-                        "</form>".
-                        "<form action='editEmployee.php' method='post'>".
-                            "<input type='text' style='display:none;' name='EmpID' value='".$emp_row["EmpID"]."'>".
-                            "<button type='submit'>Edit</button>".
+                echo "<td align='center'>
+                        <form action='deleteEmployee.php' method='post' onsubmit=\"return confirm('Are you sure you want to delete this employee?');\">
+                            <input type='hidden' name='EmpID' value='".$emp_row["EmpID"]."'>
+                            <button type='submit'>Delete</button>
+                        </form>
 
-                        "</form>".
-                    "</td>";
+                        <form action='editEmployee.php' method='post'>
+                            <input type='hidden' name='EmpID' value='".$emp_row["EmpID"]."'>
+                            <button type='submit'>Edit</button>
+                        </form>
+                    </td>";
+
                 echo "</tr>";
             }
         } else {

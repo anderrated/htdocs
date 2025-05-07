@@ -1,5 +1,6 @@
 <?php
 include 'DBConnector.php';
+
 $name = $_GET["name"];
 $age = $_GET["age"];
 $salary = $_GET["salary"];
@@ -16,6 +17,7 @@ if ($conn->query($sql) === TRUE) {
               VALUES ('$last_id', '$DeptID', '$Percent_Time');";
     $result = $conn->query($query);
     header("Location: employees.php");
+    exit;
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
