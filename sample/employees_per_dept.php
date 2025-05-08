@@ -66,5 +66,5 @@ if ($dept_result->num_rows > 0) {
     echo "No departments found.";
 }
 
-$conn->close();
+// $conn->close();
 ?>

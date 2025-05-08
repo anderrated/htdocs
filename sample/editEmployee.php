@@ -13,26 +13,26 @@ if (isset($_POST['EmpID'])) {
     if ($result->num_rows == 1) {
         $emp_result = $result->fetch_assoc();
 
-        // Check if form was submitted with all needed fields
-        if (isset($_POST['EmpName'], $_POST['Age'], $_POST['Salary'], $_POST['HireDate'], $_POST['designation'], $_POST['department'])) {
-            $emp_name = $_POST['EmpName'];
-            $age = $_POST['Age'];
-            $salary = $_POST['Salary'];
-            $hire_date = $_POST['HireDate'];
+        include 'employees.php';
+
+        // check if form was submitted with all needed fields
+        if (isset($_POST['name'], $_POST['age'], $_POST['salary'], $_POST['date-hired'], $_POST['designation'], $_POST['department'])) {
+            $emp_name = $_POST['name'];
+            $age = $_POST['age'];
+            $salary = $_POST['salary'];
+            $hire_date = $_POST['date-hired'];
             $designation = $_POST['designation'];
             $dept_id = $_POST['department'];
 
-            // Update employee info
-            $update_emp_sql = "UPDATE employee 
-                SET EmpName = '$emp_name', Age = '$age', Salary = '$salary', HireDate = '$hire_date' 
-                WHERE EmpID = '$emp_id'";
+            // update employee info
+            $update_emp_sql = "UPDATE employee SET EmpName = '$emp_name', Age = '$age', Salary = '$salary', HireDate = '$hire_date' WHERE EmpID = '$emp_id'";
 
             if ($conn->query($update_emp_sql) === TRUE) {
-                // Update work table to reflect department
+                // update work table to reflect department
                 $update_work_sql = "UPDATE work SET DeptID = '$dept_id' WHERE EmpID = '$emp_id'";
                 $conn->query($update_work_sql);
 
-                // Manager logic
+                // manager logic
                 if ($designation == "2") {
                     $conn->query("UPDATE department SET MgrEmpID = '$emp_id' WHERE DeptID = '$dept_id'");
                 } else {
