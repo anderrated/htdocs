@@ -64,6 +64,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`EmpID`, `EmpName`, `Age`, `Salary`, `HireDate`) VALUES
+(1, 'Bing Jiang', 35, '20000.0000', '2011-04-02'),
 (2, 'River Dale', 35, '20000.0000', '2019-06-01'),
 (3, 'Anthony Peterson', 38, '21000.5000', '2019-07-01'),
 (4, 'Robert Brickson', 40, '19000.7500', '2019-10-01'),
@@ -91,9 +92,10 @@ INSERT INTO `work` (`EmpID`, `DeptID`, `Percent_Time`) VALUES
 (2, 2, '100.0000'),
 (3, 1, '50.0000'),
 (4, 2, '100.0000'),
-(36, 3, '100.0000'),
-(37, 3, '50.0000'),
-(38, 3, '100.0000');
+(5, 3, '100.0000'),
+(6, 2, '100.0000'),
+(7, 1, '100.0000');
+
 
 --
 -- Indexes for dumped tables

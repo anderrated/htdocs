@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <style>
     body {
@@ -18,12 +19,16 @@
 </style>
 <body>
     <?php
-        $update = false;
+        $update = isset($_POST['edit']);
     ?>
     <h1>Employee Management</h1>
     <br>
     <h3>New Employee:</h3>
-    <form action="addEmployee.php" method="get">
+    <form action="<?= isset($emp_result) ? 'editEmployee.php' : 'addEmployee.php'; ?>" method="post">
+        <!-- EmpID hidden during edit mode -->
+         <?php if (isset($emp_result)) { ?>
+            <input type="hidden" name="EmpID" value="<?= $emp_result['EmpID']; ?>">
+         <?php } ?>
         <table style="width:100%">
             <tr>
                 <td class="tlabel">Name</td>
@@ -59,8 +64,8 @@
             <tr>
                 <td class="tlabel">Designation</td>
                 <td>
-                    <input type="radio" name="designation" value="1"  <?= isset($emp_result['EmpID']) && $emp_result['EmpID'] == 1 ? 'checked' : '';?>>Manager<br>
-                    <input type="radio" name="designation" value="2"  <?= isset($emp_result['EmpID']) && $emp_result['EmpID'] == 2 ? 'checked' : ''; ?>>Employee<br>
+                    <input type="radio" name="designation" value="1" <?= isset($emp_result['MgrEmpID']) && $emp_result['MgrEmpID'] == NULL ? 'checked' : '' ?>> Employee<br>
+                    <input type="radio" name="designation" value="2" <?= isset($emp_result['MgrEmpID']) && $emp_result['MgrEmpID'] != NULL ? 'checked' : '' ?>> Manager<br>
                 </td>
             </tr>
             <tr>
@@ -68,7 +73,7 @@
             </tr>
             <tr>
                 <td class="tlabel"></td>
-                <button type="submit"><?= $update ? 'Update' : 'Add'; ?> Employee</button>
+                <td><button type="submit"><?= $update ? 'Update' : 'Add'; ?> Employee</button></td>
             </tr>
         </table>
     </form>

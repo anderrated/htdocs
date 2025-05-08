@@ -27,13 +27,16 @@ if ($dept_result->num_rows > 0) {
 
         if ($emp_result->num_rows > 0) {
             while($emp_row = $emp_result->fetch_assoc()) {
+                $empID = $emp_row['EmpID'];
+                $name = htmlspecialchars($emp_row['EmpName']); 
+
                 echo "<tr>"
                         ."<td align='center'>".$emp_row['EmpID']."</td>"
                         ."<td align='center'>".$emp_row['EmpName']."</td>"
                         ."<td align='center'>".$emp_row['Age']."</td>"
                         ."<td align='center'>".$emp_row['Salary']."</td>"
                         ."<td align='center'>".$emp_row['HireDate']."</td>";
-                if ($mgrEmpID == $emp_row['EmpID']) {
+                if ($mgrEmpID == $empID) {
                     echo "<td align='center'>Manager</td>";
                 }
                 else {
@@ -47,7 +50,7 @@ if ($dept_result->num_rows > 0) {
 
                         <form action='editEmployee.php' method='post'>
                             <input type='hidden' name='EmpID' value='".$emp_row["EmpID"]."'>
-                            <button type='submit'>Edit</button>
+                            <button type='submit' name='edit'>Edit</button>
                         </form>
                     </td>";
 

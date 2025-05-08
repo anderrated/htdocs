@@ -16,9 +16,6 @@
     <h1 style="color: darkgrey;">This page will display the content of each table in the <i style="color: gold;">sample</i> database.</h1>
     <p style="color: grey;" >Type tutorial 2.0 </p>
     <br>
-    <?php
-        include 'addEmployee.php'
-    ?>
     <h2 style="color:white;">Department Table:</h2>
     <table style="width:100%">
         <tr>
