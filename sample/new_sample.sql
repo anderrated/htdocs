@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `department` (
   `DeptID` int(11) NOT NULL,
   `DeptName` text NOT NULL,
-  `MgrEmpID` int(11) NOT NULL,
+  `MgrEmpID` int(11),
   `Budget` decimal(10,0) NOT NULL,
   `DeptCity` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -105,8 +105,7 @@ INSERT INTO `work` (`EmpID`, `DeptID`, `Percent_Time`) VALUES
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`DeptID`),
-  ADD UNIQUE KEY `MgrEmpID` (`MgrEmpID`);
+  ADD PRIMARY KEY (`DeptID`);
 
 --
 -- Indexes for table `employee`

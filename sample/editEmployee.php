@@ -13,7 +13,6 @@ if (isset($_POST['EmpID'])) {
     if ($result->num_rows == 1) {
         $emp_result = $result->fetch_assoc();
 
-        include 'employees.php';
 
         // check if form was submitted with all needed fields
         if (isset($_POST['name'], $_POST['age'], $_POST['salary'], $_POST['date-hired'], $_POST['designation'], $_POST['department'])) {
@@ -40,20 +39,25 @@ if (isset($_POST['EmpID'])) {
                 }
 
                 // Redirect to employees list or confirmation
-                header("Location: employees.php");
+                header("Location: index.php");
                 exit();
+
             } else {
                 echo "Error updating Employee: " . $conn->error;
             }
+            
         } else {
             echo "Missing fields in form submission.";
         }
+        include 'employees.php';
     } else {
         echo "Employee not found.";
     }
 } else {
     echo "EmpID not set.";
+ 
 }
 
 $conn->close();
 ?>
+

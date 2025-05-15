@@ -64,8 +64,8 @@
             <tr>
                 <td class="tlabel">Designation</td>
                 <td>
-                    <input type="radio" name="designation" value="1" <?= isset($emp_result['MgrEmpID']) && $emp_result['MgrEmpID'] == NULL ? 'checked' : '' ?>> Employee<br>
-                    <input type="radio" name="designation" value="2" <?= isset($emp_result['MgrEmpID']) && $emp_result['MgrEmpID'] != NULL ? 'checked' : '' ?>> Manager<br>
+                    <input type="radio" name="designation" value="1" <?= ($emp_result['MgrEmpID'] != $emp_result['EmpID'] ? 'checked' : '') ?>> Employee<br>
+                    <input type="radio" name="designation" value="2" <?= ($emp_result['MgrEmpID'] == $emp_result['EmpID'] ? 'checked' : '') ?>> Manager<br>
                 </td>
             </tr>
             <tr>
